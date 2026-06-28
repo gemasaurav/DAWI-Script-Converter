@@ -139,3 +139,18 @@ if (copyBtn) {
     });
 
 }
+// ---------- Clear Button ----------
+
+const clearBtn = document.getElementById("clearBtn");
+
+if (clearBtn) {
+
+    clearBtn.addEventListener("click", function () {
+
+        document.getElementById("inputText").value = "";
+
+        document.getElementById("outputText").value = "";
+
+    });
+
+}
