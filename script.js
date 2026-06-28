@@ -119,3 +119,23 @@ if (convertBtn) {
     });
 
 }
+// ---------- Copy Button ----------
+
+const copyBtn = document.getElementById("copyBtn");
+
+if (copyBtn) {
+
+    copyBtn.addEventListener("click", function () {
+
+        let output = document.getElementById("outputText");
+
+        output.select();
+        output.setSelectionRange(0, 99999);
+
+        navigator.clipboard.writeText(output.value);
+
+        alert("Copied Successfully!");
+
+    });
+
+}
