@@ -17,5 +17,5 @@ document.getElementById("nextBtn").addEventListener("click",function(){
 
     // Hidden calculation will be added later
 
-    alert("Converter Page Coming Next...");
+    window.location.href = "converter.html";
 });
