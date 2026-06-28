@@ -92,9 +92,25 @@ if (convertBtn) {
 
             } else {
 
-                output += ch;
+    switch(ch){
 
-            }
+        case '0': output += '.'; break;
+        case '1': output += '!'; break;
+        case '2': output += '^'; break;
+        case '3': output += '%'; break;
+        case '4': output += '#'; break;
+        case '5': output += '&'; break;
+        case '6': output += '@'; break;
+        case '7': output += '?'; break;
+        case '8': output += '*'; break;
+        case '9': output += '$'; break;
+
+        default:
+            output += ch;
+
+    }
+
+}
 
         }
 
