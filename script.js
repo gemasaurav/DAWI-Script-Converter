@@ -76,7 +76,7 @@ if (convertBtn) {
 
     convertBtn.addEventListener("click", function () {
 
-        let shift = parseInt(localStorage.getItem("dawiCode"));
+        let shift = parseInt(localStorage.getItem("dawiCode")) || 3;
 
         let input = document.getElementById("inputText").value;
 
