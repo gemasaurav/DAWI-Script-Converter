@@ -68,3 +68,38 @@ function shiftLetter(letter, shift) {
     return newLetter;
 
 }
+// ---------- Convert Button ----------
+
+const convertBtn = document.getElementById("convertBtn");
+
+if (convertBtn) {
+
+    convertBtn.addEventListener("click", function () {
+
+        let shift = parseInt(localStorage.getItem("dawiCode"));
+
+        let input = document.getElementById("inputText").value;
+
+        let output = "";
+
+        for (let i = 0; i < input.length; i++) {
+
+            let ch = input[i];
+
+            if ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z')) {
+
+                output += shiftLetter(ch, shift);
+
+            } else {
+
+                output += ch;
+
+            }
+
+        }
+
+        document.getElementById("outputText").value = output;
+
+    });
+
+}
