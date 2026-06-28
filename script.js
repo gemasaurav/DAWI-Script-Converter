@@ -199,3 +199,116 @@ if (clearBtn) {
     });
 
 }
+// ======================================================
+// Calculate Hidden DAWI Code
+// ======================================================
+
+function calculateDawiCode(date) {
+
+    let digits = date.replace(/\//g, "");
+
+    let sum = 0;
+
+    for (let i = 0; i < digits.length; i++) {
+
+        sum += parseInt(digits[i]);
+
+    }
+
+    while (sum > 9) {
+
+        let temp = 0;
+
+        while (sum > 0) {
+
+            temp += sum % 10;
+
+            sum = Math.floor(sum / 10);
+
+        }
+
+        sum = temp;
+
+    }
+
+    return sum;
+
+}
+
+
+// ======================================================
+// Shift Letter
+// ======================================================
+
+function shiftLetter(letter, shift) {
+
+    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    let upper = letter.toUpperCase();
+
+    let index = alphabet.indexOf(upper);
+
+    if (index === -1) return letter;
+
+    let newIndex = (index + shift) % 26;
+
+    let result = alphabet[newIndex];
+
+    if (letter === letter.toLowerCase()) {
+
+        return result.toLowerCase();
+
+    }
+
+    return result;
+
+}
+
+
+// ======================================================
+// Convert Text
+// ======================================================
+
+function convertText(input, shift) {
+
+    let output = "";
+
+    for (let i = 0; i < input.length; i++) {
+
+        let ch = input[i];
+
+        if ((ch >= "A" && ch <= "Z") ||
+            (ch >= "a" && ch <= "z")) {
+
+            output += shiftLetter(ch, shift);
+
+        }
+
+        else {
+
+            switch (ch) {
+
+                case "0": output += "."; break;
+                case "1": output += "!"; break;
+                case "2": output += "^"; break;
+                case "3": output += "%"; break;
+                case "4": output += "#"; break;
+                case "5": output += "&"; break;
+                case "6": output += "@"; break;
+                case "7": output += "?"; break;
+                case "8": output += "*"; break;
+                case "9": output += "$"; break;
+
+                default:
+
+                    output += ch;
+
+            }
+
+        }
+
+    }
+
+    return output;
+
+}
