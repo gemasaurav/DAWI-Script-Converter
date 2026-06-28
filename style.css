@@ -1,2 +1,64 @@
+body{
+    margin:0;
+    padding:0;
+    background:#0d0d0d;
+    color:white;
+    font-family:Arial,Helvetica,sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
 
-/* DAWI Script Converter Styles */
+#splash,
+#dateScreen{
+    width:90%;
+    max-width:420px;
+    text-align:center;
+}
+
+#logo{
+    width:180px;
+    margin-bottom:20px;
+}
+
+h1{
+    color:#47F5F5;
+    font-size:32px;
+    margin:10px 0;
+}
+
+h2{
+    color:white;
+}
+
+p{
+    color:#cccccc;
+}
+
+input{
+    width:90%;
+    padding:15px;
+    font-size:22px;
+    border:none;
+    border-radius:12px;
+    text-align:center;
+    margin-top:20px;
+}
+
+button{
+    margin-top:25px;
+    width:70px;
+    height:70px;
+    border:none;
+    border-radius:50%;
+    background:#47F5F5;
+    color:black;
+    font-size:34px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
