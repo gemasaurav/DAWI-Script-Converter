@@ -1,108 +1,153 @@
-// Show Date Screen after 3 seconds
-setTimeout(function(){
+/* ======================================================
+   DAWI SCRIPT CONVERTER v2.0
+   Created & Designed by 100,000,000,000
+====================================================== */
 
-    document.getElementById("splash").style.display="none";
-    document.getElementById("dateScreen").style.display="block";
+// ---------- Global Variables ----------
 
-},3000);
+let dawiCode = 1;
 
-document.getElementById("nextBtn").addEventListener("click",function(){
+// ---------- Wait until page loads ----------
 
-    let date=document.getElementById("codingDate").value;
+document.addEventListener("DOMContentLoaded", function () {
 
-    if(date.length!=10){
-        alert("Enter date in DD/MM/YYYY format");
-        return;
+    // Splash Screen
+    const splash = document.getElementById("splash");
+    const dateScreen = document.getElementById("dateScreen");
+
+    if (splash && dateScreen) {
+
+        setTimeout(function () {
+
+            splash.style.display = "none";
+            dateScreen.style.display = "block";
+
+        }, 3000);
+
     }
 
-    // Hidden calculation will be added later
+    // Date Input Formatting
+    const codingDate = document.getElementById("codingDate");
 
-    // Remove all / characters
-let digits = date.replace(/\//g, "");
+    if (codingDate) {
 
-// Calculate digit sum
-let sum = 0;
+        codingDate.addEventListener("input", formatDateInput);
 
-for (let i = 0; i < digits.length; i++) {
-    sum += parseInt(digits[i]);
-}
-
-// Convert to a single digit
-while (sum > 9) {
-    let temp = 0;
-
-    while (sum > 0) {
-        temp += sum % 10;
-        sum = Math.floor(sum / 10);
     }
 
-    sum = temp;
-}
+    // Next Button
+    const nextBtn = document.getElementById("nextBtn");
 
-// Save the hidden code
-localStorage.setItem("dawiCode", sum);
+    if (nextBtn) {
 
-// Open converter page
-window.location.href = "converter.html";
+        nextBtn.addEventListener("click", processDate);
+
+    }
+
+    // Converter Buttons
+    initialiseConverter();
+
 });
-// ---------- DAWI Letter Converter ----------
 
-function shiftLetter(letter, shift) {
 
-    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+// ======================================================
+// Automatic Date Formatting
+// DDMMYYYY -> DD/MM/YYYY
+// ======================================================
 
-    let upper = letter.toUpperCase();
+function formatDateInput(e) {
 
-    let index = alphabet.indexOf(upper);
+    let value = e.target.value;
 
-    if(index === -1) return letter;
+    value = value.replace(/\D/g, "");
 
-    let newIndex = (index + shift) % 26;
-
-    let newLetter = alphabet[newIndex];
-
-    if(letter === letter.toLowerCase()){
-        return newLetter.toLowerCase();
+    if (value.length > 8) {
+        value = value.substring(0, 8);
     }
 
-    return newLetter;
+    if (value.length > 4) {
+
+        value =
+            value.substring(0, 2) +
+            "/" +
+            value.substring(2, 4) +
+            "/" +
+            value.substring(4);
+
+    }
+
+    else if (value.length > 2) {
+
+        value =
+            value.substring(0, 2) +
+            "/" +
+            value.substring(2);
+
+    }
+
+    e.target.value = value;
 
 }
-// ---------- Convert Button ----------
 
-const convertBtn = document.getElementById("convertBtn");
 
-if (convertBtn) {
+// ======================================================
+// Process Coding Date
+// ======================================================
 
-    convertBtn.addEventListener("click", function () {
+function processDate() {
 
-        let shift = parseInt(localStorage.getItem("dawiCode")) || 3;
+    const dateBox = document.getElementById("codingDate");
 
-        let input = document.getElementById("inputText").value;
+    let date = dateBox.value.trim();
 
-        let output = "";
+    if (!isValidDate(date)) {
 
-        for (let i = 0; i < input.length; i++) {
+        alert("Please enter a valid date in DD/MM/YYYY format.");
 
-            let ch = input[i];
+        return;
 
-            if ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z')) {
+    }
 
-                output += shiftLetter(ch, shift);
+    dawiCode = calculateDawiCode(date);
 
-            } else {
+    localStorage.setItem("dawiCode", dawiCode);
 
-    switch(ch){
+    window.location.href = "converter.html";
 
-        case '0': output += '.'; break;
-        case '1': output += '!'; break;
-        case '2': output += '^'; break;
-        case '3': output += '%'; break;
-        case '4': output += '#'; break;
-        case '5': output += '&'; break;
-        case '6': output += '@'; break;
-        case '7': output += '?'; break;
-        case '8': output += '*'; break;
+}
+
+
+// ======================================================
+// Validate Date
+// ======================================================
+
+function isValidDate(date) {
+
+    const pattern = /^\d{2}\/\d{2}\/\d{4}$/;
+
+    if (!pattern.test(date)) {
+
+        return false;
+
+    }
+
+    const parts = date.split("/");
+
+    const day = parseInt(parts[0]);
+
+    const month = parseInt(parts[1]);
+
+    const year = parseInt(parts[2]);
+
+    if (month < 1 || month > 12) return false;
+
+    if (day < 1 || day > 31) return false;
+
+    if (year < 1000) return false;
+
+    return true;
+
+}        case '8': output += '*'; break;
         case '9': output += '$'; break;
 
         default:
