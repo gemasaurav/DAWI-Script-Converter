@@ -45,3 +45,26 @@ localStorage.setItem("dawiCode", sum);
 // Open converter page
 window.location.href = "converter.html";
 });
+// ---------- DAWI Letter Converter ----------
+
+function shiftLetter(letter, shift) {
+
+    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    let upper = letter.toUpperCase();
+
+    let index = alphabet.indexOf(upper);
+
+    if(index === -1) return letter;
+
+    let newIndex = (index + shift) % 26;
+
+    let newLetter = alphabet[newIndex];
+
+    if(letter === letter.toLowerCase()){
+        return newLetter.toLowerCase();
+    }
+
+    return newLetter;
+
+}
