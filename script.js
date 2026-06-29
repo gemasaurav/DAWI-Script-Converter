@@ -261,3 +261,99 @@ function convertText(input, shift) {
     return output;
 
 }
+// ======================================================
+// Initialise Converter
+// ======================================================
+
+function initialiseConverter() {
+
+    const convertBtn = document.getElementById("convertBtn");
+    const copyBtn = document.getElementById("copyBtn");
+    const clearBtn = document.getElementById("clearBtn");
+
+    // Not on converter page
+    if (!convertBtn) return;
+
+    // Read hidden DAWI code
+    let shift = parseInt(localStorage.getItem("dawiCode"));
+
+    if (isNaN(shift)) {
+        shift = 3;      // Temporary fallback
+    }
+
+    // ==========================
+    // Convert Button
+    // ==========================
+
+    convertBtn.addEventListener("click", function () {
+
+        const inputBox = document.getElementById("inputText");
+        const outputBox = document.getElementById("outputText");
+
+        let input = inputBox.value;
+
+        if (input.trim() === "") {
+
+            alert("Please enter some text.");
+
+            inputBox.focus();
+
+            return;
+
+        }
+
+        outputBox.value = convertText(input, shift);
+
+    });
+
+    // ==========================
+    // Copy Button
+    // ==========================
+
+    copyBtn.addEventListener("click", async function () {
+
+        const outputBox = document.getElementById("outputText");
+
+        if (outputBox.value.trim() === "") {
+
+            alert("Nothing to copy.");
+
+            return;
+
+        }
+
+        try {
+
+            await navigator.clipboard.writeText(outputBox.value);
+
+            alert("Copied Successfully!");
+
+        }
+
+        catch (err) {
+
+            outputBox.select();
+
+            document.execCommand("copy");
+
+            alert("Copied Successfully!");
+
+        }
+
+    });
+
+    // ==========================
+    // Clear Button
+    // ==========================
+
+    clearBtn.addEventListener("click", function () {
+
+        document.getElementById("inputText").value = "";
+
+        document.getElementById("outputText").value = "";
+
+        document.getElementById("inputText").focus();
+
+    });
+
+                             }
