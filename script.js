@@ -269,6 +269,69 @@ function initialiseConverter() {
 
     const convertBtn = document.getElementById("convertBtn");
     const copyBtn = document.getElementById("copyBtn");
+    // ==========================
+// Decode Button
+// ==========================
+
+const decodeBtn = document.getElementById("decodeBtn");
+
+if (decodeBtn) {
+
+    decodeBtn.addEventListener("click", function () {
+
+        let shift = parseInt(localStorage.getItem("dawiCode")) || 3;
+
+        let input = document.getElementById("inputText").value;
+
+        let output = "";
+
+        for (let i = 0; i < input.length; i++) {
+
+            let ch = input[i];
+
+            // Decode Symbols back to numbers
+
+            switch(ch){
+
+                case '.': output += '0'; continue;
+
+                case '!': output += '1'; continue;
+
+                case '^': output += '2'; continue;
+
+                case '%': output += '3'; continue;
+
+                case '#': output += '4'; continue;
+
+                case '&': output += '5'; continue;
+
+                case '@': output += '6'; continue;
+
+                case '?': output += '7'; continue;
+
+                case '*': output += '8'; continue;
+
+                case '$': output += '9'; continue;
+
+            }
+
+            if ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z')) {
+
+                output += shiftLetter(ch, 26 - shift);
+
+            } else {
+
+                output += ch;
+
+            }
+
+        }
+
+        document.getElementById("outputText").value = output;
+
+    });
+
+}
     const clearBtn = document.getElementById("clearBtn");
 
     // Not on converter page
