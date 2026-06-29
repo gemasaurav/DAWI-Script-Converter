@@ -62,3 +62,67 @@ button{
 button:hover{
     transform:scale(1.05);
 }
+/* ==========================
+   Converter Page Layout
+========================== */
+
+#converterPage{
+    width:95%;
+    max-width:900px;
+    margin:auto;
+    text-align:center;
+}
+
+.textareas{
+    display:flex;
+    gap:15px;
+    margin:25px 0;
+}
+
+.textareas textarea{
+    width:50%;
+    min-height:260px;
+    resize:vertical;
+    padding:15px;
+    font-size:20px;
+    border-radius:12px;
+    border:none;
+    outline:none;
+    box-sizing:border-box;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.buttons button{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    font-size:24px;
+    font-weight:bold;
+}
+
+/* Mobile */
+
+@media(max-width:700px){
+
+.textareas{
+    flex-direction:column;
+}
+
+.textareas textarea{
+    width:100%;
+    min-height:220px;
+}
+
+.buttons button{
+    width:95px;
+    height:95px;
+    font-size:22px;
+}
+
+}
