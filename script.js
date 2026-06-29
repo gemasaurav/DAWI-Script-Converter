@@ -218,7 +218,11 @@ function shiftLetter(letter, shift) {
 // Convert Text
 // ======================================================
 
-function convertText(input, shift) {
+// ======================================================
+// Decode Text
+// ======================================================
+
+function decodeText(input, shift) {
 
     let output = "";
 
@@ -226,33 +230,31 @@ function convertText(input, shift) {
 
         let ch = input[i];
 
+        switch (ch) {
+
+            case ".": output += "0"; continue;
+            case "!": output += "1"; continue;
+            case "^": output += "2"; continue;
+            case "%": output += "3"; continue;
+            case "#": output += "4"; continue;
+            case "&": output += "5"; continue;
+            case "@": output += "6"; continue;
+            case "?": output += "7"; continue;
+            case "*": output += "8"; continue;
+            case "$": output += "9"; continue;
+
+        }
+
         if ((ch >= "A" && ch <= "Z") ||
             (ch >= "a" && ch <= "z")) {
 
-            output += shiftLetter(ch, shift);
+            output += shiftLetter(ch, 26 - shift);
 
         }
 
         else {
 
-            switch (ch) {
-
-                case "0": output += "."; break;
-                case "1": output += "!"; break;
-                case "2": output += "^"; break;
-                case "3": output += "%"; break;
-                case "4": output += "#"; break;
-                case "5": output += "&"; break;
-                case "6": output += "@"; break;
-                case "7": output += "?"; break;
-                case "8": output += "*"; break;
-                case "9": output += "$"; break;
-
-                default:
-
-                    output += ch;
-
-            }
+            output += ch;
 
         }
 
