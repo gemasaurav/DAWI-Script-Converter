@@ -270,6 +270,7 @@ function decodeText(input, shift) {
 function initialiseConverter() {
 
     const convertBtn = document.getElementById("convertBtn");
+    const decodeBtn = document.getElementById("decodeBtn");
     const copyBtn = document.getElementById("copyBtn");
     const clearBtn = document.getElementById("clearBtn");
 
