@@ -308,7 +308,30 @@ function initialiseConverter() {
         outputBox.value = convertText(input, shift);
 
     });
+// ==========================
+// Decode Button
+// ==========================
 
+decodeBtn.addEventListener("click", function () {
+
+    const inputBox = document.getElementById("inputText");
+    const outputBox = document.getElementById("outputText");
+
+    let input = inputBox.value;
+
+    if (input.trim() === "") {
+
+        alert("Please enter some text.");
+
+        inputBox.focus();
+
+        return;
+
+    }
+
+    outputBox.value = decodeText(input, shift);
+
+});
     // ==========================
     // Copy Button
     // ==========================
