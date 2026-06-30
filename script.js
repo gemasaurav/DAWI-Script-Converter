@@ -217,7 +217,7 @@ function shiftLetter(letter, shift) {
 // ======================================================
 // Convert Text
 // ======================================================
-```javascript
+
 function convertText(input, shift) {
 
     let output = "";
