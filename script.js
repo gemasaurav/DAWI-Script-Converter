@@ -258,7 +258,6 @@ function convertText(input, shift) {
     return output;
 
 }
-```
 
 // ======================================================
 // Decode Text
