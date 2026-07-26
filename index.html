@@ -12,17 +12,21 @@
 <body>
 
     <!-- Splash Screen -->
-    <div id=”splash”>
-        
-        <img src=”assets/dawi-logo.png” alt=”DAWI Logo” id=”logo”>
+    <!-- Splash Screen -->
+<div id="splash">
+  <img src="assets/dawi-logo.png" alt="DAWI Logo" id="logo">
+  <h1>DAWI Script Converter</h1>
+  <p>Created & Designed by</p>
+  <h2>100, 000 000 000</h2>
+</div>
 
-
-        <h1>DAWI Script Converter</h1>
-
-        <p>Created & Designed by</p>
-
-        <h2>100, 000 000 000</h2>
-    </div>
+<script>
+  setTimeout(() => {
+    const splash = document.getElementById("splash");
+    splash.style.opacity = "0";
+    setTimeout(() => splash.remove(), 500); // remove after fade
+  }, 4500);
+</script>
 
     <!-- Date Screen -->
     <div id="dateScreen" style="display:none;">
